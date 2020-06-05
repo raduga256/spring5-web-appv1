@@ -10,11 +10,14 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(exclude = {"recipe", "uom"})
 @Entity
 public class Ingredient {
+    public Ingredient() {
+    }
+
     public Ingredient(String descriptions, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
         this.descriptions = descriptions;
         this.amount = amount;
         this.uom = uom;
-        this.recipe = recipe;
+        this.recipe= recipe;
     }
 
     @Id

@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
-
+    //Am wondering why this is declared here and not in the service
     Optional<Category> findByDescription(String description);
 }
