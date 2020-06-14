@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
-    private final CategoryCommandToCategory categoryConveter;
+    private final CategoryCommandToCategory categoryConverter;
     private final IngredientCommandToIngredient ingredientConverter;
     private final NotesCommandToNotes notesConverter;
 
-    public RecipeCommandToRecipe(CategoryCommandToCategory categoryConveter, IngredientCommandToIngredient ingredientConverter, NotesCommandToNotes notesConverter) {
-        this.categoryConveter = categoryConveter;
+    public RecipeCommandToRecipe(CategoryCommandToCategory categoryConverter, IngredientCommandToIngredient ingredientConverter, NotesCommandToNotes notesConverter) {
+        this.categoryConverter = categoryConverter;
         this.ingredientConverter = ingredientConverter;
         this.notesConverter = notesConverter;
     }
@@ -38,16 +38,16 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         recipe.setDifficulty(recipeCommand.getDifficulty());
         recipe.setImage(recipeCommand.getImage());
         //Setting Recipe Notes todo: check
-        recipe.setNotes(recipeCommand.getNotes());
+        recipe.setNotes(notesConverter.convert(recipeCommand.getNotes()));
 
         if (recipeCommand.getCategories() != null && recipeCommand.getCategories().size() > 0){
             recipeCommand.getCategories()
-                    .forEach(category -> recipe.getCategories().add(category));
+                    .forEach(category -> recipe.getCategories().add(categoryConverter.convert(category)));
         }
 
         if (recipeCommand.getIngredients() != null && recipeCommand.getIngredients().size() > 0){
             recipeCommand.getIngredients()
-                    .forEach(ingredient -> recipe.getIngredients().add(ingredient));
+                    .forEach(ingredient -> recipe.getIngredients().add(ingredientConverter.convert(ingredient)));
         }
 
         return recipe;

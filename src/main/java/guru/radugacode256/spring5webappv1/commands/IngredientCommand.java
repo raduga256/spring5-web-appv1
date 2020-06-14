@@ -1,6 +1,6 @@
 package guru.radugacode256.spring5webappv1.commands;
 
-import guru.radugacode256.spring5webappv1.model.UnitOfMeasure;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,9 +13,9 @@ import java.math.BigDecimal;
 public class IngredientCommand {
 
     private Long id;
-    private Long recipeId;
+    private Long recipeId; //Rather than an actual RecipeCommand here we use an object Id to implement Observer Pattern @ManyToOne mappings
     private String descriptions;
     private BigDecimal amount;
-    private UnitOfMeasure uom;
+    private UnitOfMeasureCommand uom;
 
 }

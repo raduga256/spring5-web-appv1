@@ -1,9 +1,7 @@
 package guru.radugacode256.spring5webappv1.commands;
 
-import guru.radugacode256.spring5webappv1.model.Category;
+
 import guru.radugacode256.spring5webappv1.model.Difficulty;
-import guru.radugacode256.spring5webappv1.model.Ingredient;
-import guru.radugacode256.spring5webappv1.model.Notes;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +24,7 @@ public class RecipeCommand {
     private String directions;
     private Difficulty difficulty;
     private Byte[] image;
-    private Notes notes;
-    private Set<Ingredient> ingredients = new HashSet<>();
-    private Set<Category> categories = new HashSet<>();
+    private NotesCommand notes;
+    private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Set<CategoryCommand> categories = new HashSet<>();
 }
