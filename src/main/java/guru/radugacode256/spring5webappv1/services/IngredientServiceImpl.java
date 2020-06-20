@@ -105,7 +105,6 @@ public class IngredientServiceImpl implements IngredientService {
                 //not totally safe ... But best guess
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(ingredient -> ingredient.getDescriptions().equals(command.getDescriptions()))
-                        .filter(ingredient -> ingredient.getDescriptions().equals(command.getDescriptions()))
                         .filter(ingredient -> ingredient.getAmount().equals(command.getAmount()))
                         .findFirst();
             }

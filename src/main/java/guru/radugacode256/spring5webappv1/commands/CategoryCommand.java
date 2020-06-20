@@ -11,7 +11,7 @@ public class CategoryCommand {
 
     private Long id;
     private String description;
-   // private Set<Recipe> recipes = new HashSet<>();  We should introduce a recipeId check if its not null then use it to go ahead
+   // private Set<Recipe> recipes = new HashSet<>();  This recipes field is not declared in the command because its of @ManyToMany
     // and set/add any recipe(s) to the categoryCommand object... @ManyToMany mapping are implemented thru foreign_key e.g recipeId
 
 }

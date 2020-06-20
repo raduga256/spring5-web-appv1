@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
 
-    private final CategoryToCategoryCommand categoryConveter;
+    private final CategoryToCategoryCommand categoryConverter;
     private final IngredientToIngredientCommand ingredientConverter;
     private final NotesToCommandNotes notesConverter;
 
-    public RecipeToRecipeCommand(CategoryToCategoryCommand categoryConveter, IngredientToIngredientCommand ingredientConverter, NotesToCommandNotes notesConverter) {
-        this.categoryConveter = categoryConveter;
+    public RecipeToRecipeCommand(CategoryToCategoryCommand categoryConverter, IngredientToIngredientCommand ingredientConverter, NotesToCommandNotes notesConverter) {
+        this.categoryConverter = categoryConverter;
         this.ingredientConverter = ingredientConverter;
         this.notesConverter = notesConverter;
     }
@@ -33,16 +33,18 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
         recipeCommand.setId(recipe.getId());
         recipeCommand.setPrepTime(recipe.getPrepTime());
         recipeCommand.setServings(recipe.getServings());
+        recipeCommand.setCookTime(recipe.getCookTime());
+        recipeCommand.setDirections(recipe.getDirections());
+        recipeCommand.setDescription(recipe.getDescription());
+        recipeCommand.setSource(recipe.getSource());
+
         recipeCommand.setUrl(recipe.getUrl());
         recipeCommand.setDifficulty(recipe.getDifficulty());
         recipeCommand.setNotes(notesConverter.convert(recipe.getNotes()));
-//        if (recipe.getNotes() != null){
-//            recipeCommand.setNotes(recipe.getNotes());
-//        }
 
         if (recipe.getCategories() != null && recipe.getCategories().size() > 0){
             recipe.getCategories()
-                    .forEach((category) -> recipeCommand.getCategories().add(categoryConveter.convert(category)));
+                    .forEach((category) -> recipeCommand.getCategories().add(categoryConverter.convert(category)));
         }
 
         if (recipe.getIngredients() != null && recipe.getIngredients().size() > 0){

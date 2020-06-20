@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class IngredientCommand {
 
     private Long id;
-    private Long recipeId; //Rather than an actual RecipeCommand here we use an object Id to implement Observer Pattern @ManyToOne mappings
+    private Long recipeId; //Rather than an actual recipe field in the entity. Here we use an object Id to implement Observer Pattern @ManyToOne mappings
     private String descriptions;
     private BigDecimal amount;
     private UnitOfMeasureCommand uom;

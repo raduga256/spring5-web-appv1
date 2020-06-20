@@ -26,11 +26,6 @@ public class RecipeServiceImplTest {
     @InjectMocks
     RecipeServiceImpl recipeService;
 
-    //    public void setUp() throws Exception{
-//        MockitoAnnotations.initMocks(this);
-//
-//        recipeService = new RecipeServiceImpl(recipeRepository);
-//    }
     @Test
     public void getRecipes() throws Exception{
 
@@ -63,5 +58,17 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
 
+    }
+    //todo create test for findCommandById method
+
+    @Test
+    public void testDeleteById(){
+
+        Long idToDelete = Long.valueOf(2L);
+        recipeService.deleteById(idToDelete);
+
+        // no 'when', since the method has void return type
+
+        verify(recipeRepository, times(1)).deleteById(idToDelete);
     }
 }
