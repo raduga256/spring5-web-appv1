@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -83,30 +84,35 @@ public class IngredientServiceImplTest {
     @Test
     public void testSaveIngredientCommand() {
         //given
+
         IngredientCommand command = new IngredientCommand();
         command.setId(1L);
         command.setRecipeId(2L);
-        command.setDescriptions("Description");
 
         Optional<Recipe> recipeOptional = Optional.of(new Recipe());
 
         Recipe savedRecipe = new Recipe();
         savedRecipe.addIngredients(new Ingredient());
         savedRecipe.getIngredients().iterator().next().setId(3L);
+        savedRecipe.getIngredients().iterator().next().setDescriptions("Description");
+        savedRecipe.getIngredients().iterator().next().setAmount(BigDecimal.valueOf(2.00));
 
         when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
         when(recipeRepository.save(any())).thenReturn(savedRecipe);
 
-        //when todo fix error for save ingredientCommand
-        //IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
-
-        //then
-        //assertEquals(Long.valueOf(3L), savedCommand.getId());
-        //verify(recipeRepository, times(1)).findById(anyLong());
-        //verify(recipeRepository, times(1)).save(any());
+//        //when todo fix error for save ingredientCommand
+//        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
+//
+//        //then
+//        assertEquals(Long.valueOf(3L), savedCommand.getId());
+//        verify(recipeRepository, times(1)).findById(anyLong());
+//        verify(recipeRepository, times(1)).save(any(Recipe.class));
     }
 
     @Test
     public void deleteById() {
+
+        Long idToDelete = Long.valueOf(2L);
+
     }
 }

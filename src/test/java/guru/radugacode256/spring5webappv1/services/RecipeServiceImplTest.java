@@ -64,11 +64,15 @@ public class RecipeServiceImplTest {
     @Test
     public void testDeleteById(){
 
+        //given
         Long idToDelete = Long.valueOf(2L);
+
+        //when
         recipeService.deleteById(idToDelete);
 
         // no 'when', since the method has void return type
 
+        //then
         verify(recipeRepository, times(1)).deleteById(idToDelete);
     }
 }
